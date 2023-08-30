@@ -3,7 +3,6 @@ package net.theiceninja.blockshuffle;
 import net.theiceninja.blockshuffle.commands.BlockShuffleCommand;
 import net.theiceninja.blockshuffle.game.Game;
 import net.theiceninja.blockshuffle.game.states.CommonGameListener;
-import net.theiceninja.blockshuffle.game.states.CountdownGameState;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class BlockShufflePlugin extends JavaPlugin {
