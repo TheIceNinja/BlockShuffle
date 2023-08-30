@@ -1,0 +1,10 @@
+name: BlockShuffle
+version: '${project.version}'
+main: net.theiceninja.blockshuffle.BlockShufflePlugin
+api-version: '1.19'
+authors: [TheIceNinja]
+description: ido is dumb
+commands:
+  blockshuffle:
+    permission: blockshuffle.admin
+
