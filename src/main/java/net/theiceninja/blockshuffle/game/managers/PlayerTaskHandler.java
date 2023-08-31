@@ -24,7 +24,8 @@ public class PlayerTaskHandler {
         List<Material> blocks = Arrays.stream(Material.values())
                 .filter(Material::isBlock)
                 .filter(material -> !(
-                        material == Material.BARRIER ||
+                        material == Material.CHAIN_COMMAND_BLOCK ||
+                                material == Material.BARRIER ||
                                 material == Material.COMMAND_BLOCK ||
                                 material == Material.VOID_AIR ||
                                 material == Material.STRUCTURE_BLOCK ||
@@ -41,6 +42,7 @@ public class PlayerTaskHandler {
                 ClickEvent.Action.OPEN_URL,
                 "https://www.google.com/search?q=minecraft+" + material + "&rlz=1C1KNTJ_enIL1065IL1065&oq=minecraft+anvil&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABiABDIHCAIQABiABDIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIHCAkQABiABNIBCDYzNTJqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8"
         ))).hoverEvent(ColorUtil.color("&#FAE06CClick to see that block!")));
+
         player.playSound(player, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
         player.showTitle(Title.title(
                 ColorUtil.color("&#FDE67C&lBlock&#FD7CDE&lShuffle"),
