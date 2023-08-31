@@ -27,7 +27,13 @@ public class PlayerTaskHandler {
     public void chooseRandomBlock(final @NotNull Player player) {
         List<Material> blocks = Arrays.stream(Material.values())
                 .filter(Material::isBlock)
-                .filter(material -> !(material == Material.BARRIER || material == Material.COMMAND_BLOCK))
+                .filter(material -> !(
+                        material == Material.BARRIER ||
+                                material == Material.COMMAND_BLOCK ||
+                                material == Material.VOID_AIR ||
+                                material == Material.STRUCTURE_BLOCK ||
+                                material == Material.STRUCTURE_VOID
+                ))
                 .toList();
         playersTask.put(player.getUniqueId(), blocks.get(ThreadLocalRandom.current().nextInt(0, blocks.size())));
 
@@ -35,12 +41,7 @@ public class PlayerTaskHandler {
         player.playSound(player, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
         player.showTitle(Title.title(
                 ColorUtil.color("&#FDE67C&lBlock&#FD7CDE&lShuffle"),
-                ColorUtil.color("&#FFEA69You need to stand on&8: &#8AFB11&l" + playersTask.get(player.getUniqueId())),
-                Title.Times.times(
-                        Duration.ofSeconds(0),
-                        Duration.ofSeconds(40),
-                        Duration.ofSeconds(0)
-                )
+                ColorUtil.color("&#FFEA69You need to stand on&8: &#8AFB11&l" + playersTask.get(player.getUniqueId()))
         ));
     }
 

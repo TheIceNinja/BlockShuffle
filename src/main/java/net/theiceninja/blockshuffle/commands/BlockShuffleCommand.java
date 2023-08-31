@@ -112,6 +112,8 @@ public class BlockShuffleCommand implements CommandExecutor, TabCompleter {
         completion.add("stop");
         completion.add("start");
 
-        return completion.stream().filter(arg -> arg.toLowerCase().startsWith(args[0].toLowerCase())).collect(Collectors.toList());
+        return completion.stream()
+                .filter(arg -> arg.toLowerCase().startsWith(args[0].toLowerCase()))
+                .collect(Collectors.toList());
     }
 }
