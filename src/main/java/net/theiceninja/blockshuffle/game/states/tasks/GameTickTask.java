@@ -12,12 +12,12 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class GameTickTask extends BukkitRunnable {
 
-    @Getter private int timeLeftUntil = (60 * 5);
+    @Getter private int timeLeftUntilRoundOver = (60 * 5);
     private final Game game;
 
     @Override
     public void run() {
-        if (timeLeftUntil <= 0) {
+        if (timeLeftUntilRoundOver <= 0) {
             startNewRound();
             return;
         }
@@ -36,13 +36,13 @@ public class GameTickTask extends BukkitRunnable {
             }
         }
 
-        if (timeLeftUntil <= 10) {
-            game.sendActionBar("");
+        if (timeLeftUntilRoundOver <= 10) {
+            game.sendActionBar("&#FF4646Round ends in&8: &#ABEEFF" + timeLeftUntilRoundOver);
         }
 
         game.updateScoreboard();
 
-        timeLeftUntil--;
+        timeLeftUntilRoundOver--;
     }
 
     private void startNewRound() {
@@ -62,6 +62,6 @@ public class GameTickTask extends BukkitRunnable {
         game.getPlayerTaskHandler().giveTasks();
         game.setRound(game.getRound() + 1);
 
-        timeLeftUntil = (60 * 5);
+        timeLeftUntilRoundOver = (60 * 5);
     }
 }
