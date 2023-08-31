@@ -142,7 +142,12 @@ public class Game {
 
             player.showTitle(Title.title(
                     ColorUtil.color("&#FDE67C&lBlock&#FD7CDE&lShuffle"),
-                    ColorUtil.color(str)
+                    ColorUtil.color(str),
+                    Title.Times.times(
+                            Duration.ofSeconds(0),
+                            Duration.ofSeconds(40),
+                            Duration.ofSeconds(0)
+                    )
             ));
         }
     }
