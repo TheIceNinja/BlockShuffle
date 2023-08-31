@@ -58,7 +58,9 @@ public class Game {
     }
 
     public void addPlayer(final @NotNull Player player) {
-        cleanupPlayer(player, true, true);
+        cleanupPlayer(player);
+        player.setGameMode(GameMode.SURVIVAL);
+        player.teleport(spawnLocation);
         players.add(player.getUniqueId());
     }
 
@@ -66,7 +68,8 @@ public class Game {
         if (isSpectating(player)) return;
         if (isPlaying(player)) players.remove(player.getUniqueId());
 
-        cleanupPlayer(player, false, true);
+        cleanupPlayer(player);
+        player.teleport(spawnLocation);
         spectators.add(player.getUniqueId());
         player.setGameMode(GameMode.SPECTATOR);
         sendMessage("&#FFD56EThe player &#FF706E" + player.getName() + " &#FFD56Elost the round");
@@ -230,12 +233,7 @@ public class Game {
         }
     }
 
-    public void cleanupPlayer(final @NotNull Player player, boolean setGameMode, boolean teleport) {
-        if (setGameMode)
-            player.setGameMode(GameMode.SURVIVAL);
-        if (teleport)
-            player.teleport(spawnLocation);
-
+    public void cleanupPlayer(final @NotNull Player player) {
         player.getInventory().clear();
         player.setHealth(20);
         player.setFoodLevel(20);

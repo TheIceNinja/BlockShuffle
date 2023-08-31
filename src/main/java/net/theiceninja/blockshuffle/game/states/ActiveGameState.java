@@ -5,6 +5,7 @@ import net.theiceninja.blockshuffle.BlockShufflePlugin;
 import net.theiceninja.blockshuffle.game.GameState;
 import net.theiceninja.blockshuffle.game.states.tasks.GameTickTask;
 import net.theiceninja.blockshuffle.utils.ColorUtil;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -42,14 +43,18 @@ public class ActiveGameState extends GameState {
             Player player = plugin.getServer().getPlayer(playerUUID);
             if (player == null) continue;
 
-            getGame().cleanupPlayer(player, true, true);
+            getGame().cleanupPlayer(player);
+            player.setGameMode(GameMode.SURVIVAL);
+            player.teleport(getGame().getSpawnLocation());
         }
 
         for (UUID playerUUID : getGame().getSpectators()) {
             Player player = plugin.getServer().getPlayer(playerUUID);
             if (player == null) continue;
 
-            getGame().cleanupPlayer(player, true, true);
+            getGame().cleanupPlayer(player);
+            player.setGameMode(GameMode.SURVIVAL);
+            player.teleport(getGame().getSpawnLocation());
         }
 
         getGame().getSpectators().clear();
