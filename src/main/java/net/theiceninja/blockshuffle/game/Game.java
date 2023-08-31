@@ -189,7 +189,7 @@ public class Game {
         } else if (state instanceof ActiveGameState activeGameState) {
             scoreboardLines.add("&fRound&8: &#FE828A" + round);
             scoreboardLines.add("&r");
-            scoreboardLines.add("&fYour block&8: &#8AFB11" + (playerTaskHandler.getPlayersTask(player) == null ? "&#A9FF94found" : playerTaskHandler.getPlayersTask(player)));
+            scoreboardLines.add("&fYour block&8: &#8AFB11" + (playerTaskHandler.getPlayersTask(player) == null ? "&#A9FF94found" : StringUtil.formatMaterialName(playerTaskHandler.getPlayersTask(player))));
             scoreboardLines.add("&fTime left&8: " + StringUtil.formatTimer(activeGameState.getGameTickTask().getTimeLeftUntil()));
             scoreboardLines.add("&r");
             scoreboardLines.add("&fAlive players&8: &#6EFFA2" + players.size());

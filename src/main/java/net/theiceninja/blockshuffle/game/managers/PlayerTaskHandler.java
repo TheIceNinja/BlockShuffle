@@ -6,6 +6,7 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.title.Title;
 import net.theiceninja.blockshuffle.game.Game;
 import net.theiceninja.blockshuffle.utils.ColorUtil;
+import net.theiceninja.blockshuffle.utils.StringUtil;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.BlockFace;
@@ -42,7 +43,7 @@ public class PlayerTaskHandler {
         playersTask.put(player.getUniqueId(), material);
 
         player.sendMessage(ColorUtil.color(
-                "&#FFEA69You need to stand on&8: &#8AFB11&l" + material
+                "&#FFEA69You need to stand on&8: &#8AFB11&l" + StringUtil.formatMaterialName(material)
         ).clickEvent((ClickEvent.clickEvent(
                 ClickEvent.Action.OPEN_URL,
                 "https://www.google.com/search?q=minecraft+" + material + "&rlz=1C1KNTJ_enIL1065IL1065&oq=minecraft+anvil&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABiABDIHCAIQABiABDIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIHCAkQABiABNIBCDYzNTJqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8"
@@ -51,7 +52,7 @@ public class PlayerTaskHandler {
         player.playSound(player, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
         player.showTitle(Title.title(
                 ColorUtil.color("&#FDE67C&lBlock&#FD7CDE&lShuffle"),
-                ColorUtil.color("&#FFEA69You need to stand on&8: &#8AFB11&l" + material)
+                ColorUtil.color("&#FFEA69You need to stand on&8: &#8AFB11&l" + StringUtil.formatMaterialName(material))
         ));
     }
 
