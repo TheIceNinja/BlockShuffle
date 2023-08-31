@@ -36,6 +36,10 @@ public class GameTickTask extends BukkitRunnable {
             }
         }
 
+        if (timeLeftUntil <= 10) {
+            game.sendActionBar("");
+        }
+
         game.updateScoreboard();
 
         timeLeftUntil--;

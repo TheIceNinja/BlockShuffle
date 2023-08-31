@@ -130,7 +130,7 @@ public class Game {
                     ColorUtil.color(str),
                     Title.Times.times(
                             Duration.ofSeconds(0),
-                            Duration.ofSeconds(40),
+                            Duration.ofSeconds(3),
                             Duration.ofSeconds(0)
                     )
             ));
@@ -145,10 +145,26 @@ public class Game {
                     ColorUtil.color(str),
                     Title.Times.times(
                             Duration.ofSeconds(0),
-                            Duration.ofSeconds(40),
+                            Duration.ofSeconds(3),
                             Duration.ofSeconds(0)
                     )
             ));
+        }
+    }
+
+    public void sendActionBar(@NotNull String str) {
+        for (UUID playerUUID : players) {
+            Player player = plugin.getServer().getPlayer(playerUUID);
+            if (player == null) continue;
+
+            player.sendActionBar(ColorUtil.color(str));
+        }
+
+        for (UUID playerUUID : spectators) {
+            Player player = plugin.getServer().getPlayer(playerUUID);
+            if (player == null) continue;
+
+            player.sendActionBar(ColorUtil.color(str));
         }
     }
 
@@ -174,7 +190,7 @@ public class Game {
             scoreboardLines.add("&fRound&8: &#FE828A" + round);
             scoreboardLines.add("&r");
             scoreboardLines.add("&fYour block&8: &#8AFB11" + (playerTaskHandler.getPlayersTask(player) == null ? "&#A9FF94found" : playerTaskHandler.getPlayersTask(player)));
-            scoreboardLines.add("&fTimer&8: " + StringUtil.formatTimer(activeGameState.getGameTickTask().getTimeLeftUntil()));
+            scoreboardLines.add("&fTime left&8: " + StringUtil.formatTimer(activeGameState.getGameTickTask().getTimeLeftUntil()));
             scoreboardLines.add("&r");
             scoreboardLines.add("&fAlive players&8: &#6EFFA2" + players.size());
         }

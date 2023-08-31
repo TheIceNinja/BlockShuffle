@@ -1,6 +1,7 @@
 package net.theiceninja.blockshuffle.game.managers;
 
 import lombok.RequiredArgsConstructor;
+import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.title.Title;
 import net.theiceninja.blockshuffle.game.Game;
 import net.theiceninja.blockshuffle.utils.ColorUtil;
@@ -10,12 +11,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.time.Duration;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 @RequiredArgsConstructor
@@ -35,13 +31,20 @@ public class PlayerTaskHandler {
                                 material == Material.STRUCTURE_VOID
                 ))
                 .toList();
-        playersTask.put(player.getUniqueId(), blocks.get(ThreadLocalRandom.current().nextInt(0, blocks.size())));
 
-        player.sendMessage(ColorUtil.color("&#FFEA69You need to stand on&8: &#8AFB11&l" + playersTask.get(player.getUniqueId())));
+        Material material = blocks.get(ThreadLocalRandom.current().nextInt(0, blocks.size()));
+        playersTask.put(player.getUniqueId(), material);
+
+        player.sendMessage(ColorUtil.color(
+                "&#FFEA69You need to stand on&8: &#8AFB11&l" + material
+        ).clickEvent((ClickEvent.clickEvent(
+                ClickEvent.Action.OPEN_URL,
+                "https://www.google.com/search?q=minecraft+" + material + "&rlz=1C1KNTJ_enIL1065IL1065&oq=minecraft+anvil&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABiABDIHCAIQABiABDIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIHCAkQABiABNIBCDYzNTJqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8"
+        ))).hoverEvent(ColorUtil.color("&#FAE06CClick to see that block!")));
         player.playSound(player, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
         player.showTitle(Title.title(
                 ColorUtil.color("&#FDE67C&lBlock&#FD7CDE&lShuffle"),
-                ColorUtil.color("&#FFEA69You need to stand on&8: &#8AFB11&l" + playersTask.get(player.getUniqueId()))
+                ColorUtil.color("&#FFEA69You need to stand on&8: &#8AFB11&l" + material)
         ));
     }
 
