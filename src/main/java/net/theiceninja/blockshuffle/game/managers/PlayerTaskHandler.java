@@ -1,5 +1,6 @@
 package net.theiceninja.blockshuffle.game.managers;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.title.Title;
@@ -11,14 +12,18 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 @RequiredArgsConstructor
 public class PlayerTaskHandler {
 
     private final Game game;
-    private final Map<UUID, Material> playersTask = new HashMap<>();
+    @Getter private final Map<UUID, Material> playersTask = new HashMap<>();
 
     public void chooseRandomBlock(final @NotNull Player player) {
         List<Material> blocks = Arrays.stream(Material.values())
@@ -77,9 +82,5 @@ public class PlayerTaskHandler {
 
     public void clearTasks() {
         playersTask.clear();
-    }
-
-    public Map<UUID, Material> getPlayersTask() {
-        return playersTask;
     }
 }
