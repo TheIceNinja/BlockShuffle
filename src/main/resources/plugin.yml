@@ -3,8 +3,10 @@ version: '${project.version}'
 main: net.theiceninja.blockshuffle.BlockShufflePlugin
 api-version: '1.19'
 authors: [TheIceNinja]
-description: ido is dumb
+description: block shuffle from dream challenge series
 commands:
   blockshuffle:
     permission: blockshuffle.admin
+    aliases:
+      - bs
 

@@ -160,7 +160,7 @@ public class Game {
         Objective objective = scoreboard.registerNewObjective(
                 "ice",
                 Criteria.DUMMY,
-                ColorUtil.color("&#FDE67C&lBlock&#FD7CDE&lShuffle &7| &fblockshuffle")
+                ColorUtil.color("&#FDE67C&lBlock&#FD7CDE&lShuffle &7| &fblock shuffle")
         );
 
         scoreboardLines.add("&r");
