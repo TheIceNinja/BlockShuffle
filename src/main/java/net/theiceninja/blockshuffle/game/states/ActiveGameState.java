@@ -8,6 +8,7 @@ import net.theiceninja.blockshuffle.utils.ColorUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 
 import java.util.UUID;
 
@@ -59,7 +60,16 @@ public class ActiveGameState extends GameState {
 
     @EventHandler
     private void onDeath(PlayerDeathEvent event) {
+        if (!getGame().isPlaying(event.getPlayer())) return;
+
         event.getDrops().clear();
         event.deathMessage(ColorUtil.color("&#FF9494" + event.getPlayer().getName() + " &#FFED94died!"));
+    }
+
+    @EventHandler
+    private void onRespawn(PlayerRespawnEvent event) {
+        if (!getGame().isPlaying(event.getPlayer())) return;
+
+        event.setRespawnLocation(getGame().getSpawnLocation());
     }
 }
