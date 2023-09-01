@@ -36,11 +36,12 @@ public class GameTickTask extends BukkitRunnable {
             }
         }
 
-        if (timeLeftUntilRoundOver <= 10)
+        if (timeLeftUntilRoundOver <= 10) {
             game.sendActionBar("&#FF4646Round ends in&8: &#ABEEFF" + timeLeftUntilRoundOver);
+            game.playSound(Sound.BLOCK_NOTE_BLOCK_FLUTE);
+        }
 
         game.updateScoreboard();
-
         timeLeftUntilRoundOver--;
     }
 
