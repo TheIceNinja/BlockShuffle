@@ -2,6 +2,7 @@ package net.theiceninja.blockshuffle.game.states.tasks;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import net.theiceninja.blockshuffle.game.Game;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -12,7 +13,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class GameTickTask extends BukkitRunnable {
 
-    @Getter private int timeLeftUntilRoundOver = (60 * 5);
+    @Setter @Getter private int timeLeftUntilRoundOver = (60 * 5);
     private final Game game;
 
     @Override

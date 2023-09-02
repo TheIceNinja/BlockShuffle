@@ -36,7 +36,7 @@ public class BlockShuffleCommand implements CommandExecutor, TabCompleter {
         }
 
         if (args.length == 0) {
-            player.sendMessage(ColorUtil.color("&#F3D346Usage: /blockshuffle <start|revive|stop|setspawn>"));
+            player.sendMessage(ColorUtil.color("&#F3D346Usage: /blockshuffle <start|revive|stop|setspawn|skipround>"));
             return true;
         }
 
@@ -96,7 +96,22 @@ public class BlockShuffleCommand implements CommandExecutor, TabCompleter {
                 player.sendMessage(ColorUtil.color("&#77FB16You successfully set the spawn."));
             }
 
-            default -> player.sendMessage(ColorUtil.color("&#F3D346Usage: /blockshuffle <start|revive|stop|setspawn>"));
+            case "skipround" -> {
+                if (!(game.getState() instanceof ActiveGameState activeGameState)) {
+                    player.sendMessage(ColorUtil.color("&#FF706EYou can't do that if the game doesn't running."));
+                    return true;
+                }
+
+                if (activeGameState.getGameTickTask() == null) {
+                    player.sendMessage(ColorUtil.color("&#FF706ETimer does not running."));
+                    return true;
+                }
+
+                activeGameState.getGameTickTask().setTimeLeftUntilRoundOver(3);
+                player.sendMessage(ColorUtil.color("&#77FB16You successfully skipped the round."));
+            }
+
+            default -> player.sendMessage(ColorUtil.color("&#F3D346Usage: /blockshuffle <start|revive|stop|setspawn|skipround>"));
         }
 
         return true;
@@ -111,6 +126,7 @@ public class BlockShuffleCommand implements CommandExecutor, TabCompleter {
         completion.add("revive");
         completion.add("stop");
         completion.add("start");
+        completion.add("skipround");
 
         return completion.stream()
                 .filter(arg -> arg.toLowerCase().startsWith(args[0].toLowerCase()))
