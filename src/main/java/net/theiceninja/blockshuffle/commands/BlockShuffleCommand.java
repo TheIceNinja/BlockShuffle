@@ -15,8 +15,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 public class BlockShuffleCommand implements CommandExecutor, TabCompleter {
@@ -121,14 +123,13 @@ public class BlockShuffleCommand implements CommandExecutor, TabCompleter {
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         if (args.length != 1) return null;
 
-        List<String> completion = new ArrayList<>();
-        completion.add("setspawn");
-        completion.add("revive");
-        completion.add("stop");
-        completion.add("start");
-        completion.add("skipround");
-
-        return completion.stream()
+        return Stream.of(
+                        "setspawn",
+                        "revive",
+                        "stop",
+                        "start",
+                        "skipround"
+                )
                 .filter(arg -> arg.toLowerCase().startsWith(args[0].toLowerCase()))
                 .collect(Collectors.toList());
     }
