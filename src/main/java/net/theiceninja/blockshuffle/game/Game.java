@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import net.kyori.adventure.title.Title;
 import net.theiceninja.blockshuffle.BlockShufflePlugin;
-import net.theiceninja.blockshuffle.game.managers.PlayerTaskHandler;
+import net.theiceninja.blockshuffle.game.handlers.PlayerTaskHandler;
 import net.theiceninja.blockshuffle.game.states.ActiveGameState;
 import net.theiceninja.blockshuffle.game.states.CountdownGameState;
 import net.theiceninja.blockshuffle.game.states.DefaultGameState;

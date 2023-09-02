@@ -1,4 +1,4 @@
-package net.theiceninja.blockshuffle.game.managers;
+package net.theiceninja.blockshuffle.game.handlers;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +35,9 @@ public class PlayerTaskHandler {
                                 material == Material.COMMAND_BLOCK ||
                                 material == Material.VOID_AIR ||
                                 material == Material.STRUCTURE_BLOCK ||
-                                material == Material.STRUCTURE_VOID
+                                material == Material.STRUCTURE_VOID ||
+                                material == Material.LIGHT ||
+                                material == Material.FROSTED_ICE
                 ))
                 .toList();
 
