@@ -37,7 +37,8 @@ public class PlayerTaskHandler {
                                 material == Material.STRUCTURE_BLOCK ||
                                 material == Material.STRUCTURE_VOID ||
                                 material == Material.LIGHT ||
-                                material == Material.FROSTED_ICE
+                                material == Material.FROSTED_ICE ||
+                                material.name().toLowerCase().contains("infested")
                 ))
                 .toList();
 
