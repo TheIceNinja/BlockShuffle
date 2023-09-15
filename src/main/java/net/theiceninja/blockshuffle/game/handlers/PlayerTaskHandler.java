@@ -39,7 +39,7 @@ public class PlayerTaskHandler {
                                 material == Material.LIGHT ||
                                 material == Material.FROSTED_ICE ||
                                 material == Material.PLAYER_HEAD ||
-                                material == Material.PLAYER_WALL_HEAD ||
+                                material.name().toLowerCase().contains("head") ||
                                 material.name().toLowerCase().contains("infested")
                 ))
                 .toList();
