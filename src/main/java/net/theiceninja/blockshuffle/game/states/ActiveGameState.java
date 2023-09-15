@@ -65,7 +65,10 @@ public class ActiveGameState extends GameState {
 
     @EventHandler
     private void onDeath(PlayerDeathEvent event) {
-        if (!getGame().isPlaying(event.getPlayer())) return;
+        if (!getGame().isPlaying(event.getPlayer())) {
+            event.setCancelled(true);
+            return;
+        }
 
         event.getDrops().clear();
         event.deathMessage(ColorUtil.color("&#FF9494" + event.getPlayer().getName() + " &#FFED94died!"));

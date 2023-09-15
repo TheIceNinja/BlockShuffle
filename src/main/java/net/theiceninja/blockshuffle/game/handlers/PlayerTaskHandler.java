@@ -62,6 +62,7 @@ public class PlayerTaskHandler {
     }
 
     public void giveTasks() {
+        playersTask.clear();
         for (UUID playerUUID : game.getPlayers()) {
             Player player = game.getPlugin().getServer().getPlayer(playerUUID);
             if (player == null) continue;
