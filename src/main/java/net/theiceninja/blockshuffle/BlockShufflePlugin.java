@@ -19,9 +19,7 @@ public final class BlockShufflePlugin extends JavaPlugin {
     }
 
     private void registerCommands() {
-        BlockShuffleCommand blockShuffleCommand = new BlockShuffleCommand(game);
-        getCommand("blockshuffle").setExecutor(blockShuffleCommand);
-        getCommand("blockshuffle").setTabCompleter(blockShuffleCommand);
+        getCommand("blockshuffle").setExecutor(new BlockShuffleCommand(game));
     }
 
     private void init() {
