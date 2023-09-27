@@ -1,4 +1,4 @@
-# blockShuffle
+# BlockShuffle
 
 **Version: 1.19+**
 **Paper plugin**
