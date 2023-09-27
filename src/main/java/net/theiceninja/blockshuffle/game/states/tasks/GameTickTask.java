@@ -49,7 +49,7 @@ public class GameTickTask extends BukkitRunnable {
     private void startNewRound() {
         if (!game.getPlayerTaskHandler().getPlayersTask().isEmpty()) {
             if (game.getPlayerTaskHandler().getPlayersTask().size() == game.getPlayers().size()) {
-                game.sendMessage("&#FC5E5ENo body found his block, moving to the next round!");
+                game.sendMessage("&#FC5E5ENobody found his block, moving to the next round!");
                 game.playSound(Sound.ENTITY_VILLAGER_NO);
             } else
                 for (UUID playerUUID : game.getPlayerTaskHandler().getPlayersTask().keySet()) {
