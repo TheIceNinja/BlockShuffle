@@ -78,8 +78,10 @@ public class Game {
         if (players.size() <= 1) {
             Player winner = plugin.getServer().getPlayer(players.stream().toList().get(0));
             String winnerName = (winner == null ? "&#FF806Enot found" : winner.getName());
-            sendMessage("&#6EFF96" + winnerName + " &#FFD56Ewon the game!");
-            sendTitle("&#6EFF96" + winnerName + " &#FFD56Ewon the game!");
+            String winMessage = "&#6EFF96" + winnerName + " &#FFD56Ewon the game!";
+
+            sendMessage(winMessage);
+            sendTitle(winMessage);
 
             setState(new DefaultGameState());
         }
