@@ -3,11 +3,12 @@ package net.theiceninja.blockshuffle.game.states;
 import lombok.Getter;
 import net.theiceninja.blockshuffle.BlockShufflePlugin;
 import net.theiceninja.blockshuffle.game.GameState;
-import net.theiceninja.blockshuffle.game.states.tasks.CountdownTask;
+import net.theiceninja.blockshuffle.game.tasks.CountdownTask;
 
+@Getter
 public class CountdownGameState extends GameState {
 
-    @Getter private CountdownTask countdownTask;
+    private CountdownTask countdownTask;
 
     @Override
     public void onEnable(BlockShufflePlugin plugin) {

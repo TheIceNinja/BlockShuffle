@@ -3,7 +3,7 @@ package net.theiceninja.blockshuffle.game.states;
 import lombok.Getter;
 import net.theiceninja.blockshuffle.BlockShufflePlugin;
 import net.theiceninja.blockshuffle.game.GameState;
-import net.theiceninja.blockshuffle.game.states.tasks.GameTickTask;
+import net.theiceninja.blockshuffle.game.tasks.GameTickTask;
 import net.theiceninja.blockshuffle.utils.ColorUtil;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;

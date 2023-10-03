@@ -1,4 +1,4 @@
-package net.theiceninja.blockshuffle.game.states.tasks;
+package net.theiceninja.blockshuffle.game.tasks;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
