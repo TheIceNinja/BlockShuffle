@@ -40,8 +40,8 @@ public class Game {
     private final Set<UUID> players = new HashSet<>();
     private final Set<UUID> spectators = new HashSet<>();
 
-    private final BlockShufflePlugin plugin;
     private final PlayerTaskHandler playerTaskHandler;
+    private final BlockShufflePlugin plugin;
 
     public Game(BlockShufflePlugin plugin) {
         this.plugin = plugin;
@@ -126,34 +126,28 @@ public class Game {
     }
 
     public void sendTitle(@NotNull String str) {
+        Title title = Title.title(
+                ColorUtil.color("&#FDE67C&lBlock&#FD7CDE&lShuffle"),
+                ColorUtil.color(str),
+                Title.Times.times(
+                        Duration.ofSeconds(0),
+                        Duration.ofSeconds(3),
+                        Duration.ofSeconds(0)
+                )
+        );
+
         for (UUID playerUUID : players) {
             Player player = plugin.getServer().getPlayer(playerUUID);
             if (player == null) continue;
 
-            player.showTitle(Title.title(
-                    ColorUtil.color("&#FDE67C&lBlock&#FD7CDE&lShuffle"),
-                    ColorUtil.color(str),
-                    Title.Times.times(
-                            Duration.ofSeconds(0),
-                            Duration.ofSeconds(3),
-                            Duration.ofSeconds(0)
-                    )
-            ));
+            player.showTitle(title);
         }
 
         for (UUID playerUUID : spectators) {
             Player player = plugin.getServer().getPlayer(playerUUID);
             if (player == null) continue;
 
-            player.showTitle(Title.title(
-                    ColorUtil.color("&#FDE67C&lBlock&#FD7CDE&lShuffle"),
-                    ColorUtil.color(str),
-                    Title.Times.times(
-                            Duration.ofSeconds(0),
-                            Duration.ofSeconds(3),
-                            Duration.ofSeconds(0)
-                    )
-            ));
+            player.showTitle(title);
         }
     }
 

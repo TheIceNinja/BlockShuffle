@@ -1,20 +1,25 @@
 package net.theiceninja.blockshuffle.game.tasks;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import net.theiceninja.blockshuffle.game.Game;
+import net.theiceninja.blockshuffle.game.handlers.PlayerTaskHandler;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.UUID;
 
-@RequiredArgsConstructor
 public class GameTickTask extends BukkitRunnable {
 
     @Setter @Getter private int timeLeftUntilRoundOver = (60 * 5);
     private final Game game;
+    private final PlayerTaskHandler playerTaskHandler;
+
+    public GameTickTask(Game game) {
+        this.game = game;
+        this.playerTaskHandler = game.getPlayerTaskHandler();
+    }
 
     @Override
     public void run() {
@@ -27,10 +32,10 @@ public class GameTickTask extends BukkitRunnable {
             Player player = game.getPlugin().getServer().getPlayer(playerUUID);
             if (player == null) continue;
 
-            if (game.getPlayerTaskHandler().isBlockTask(player)) {
-                game.getPlayerTaskHandler().finishTask(player);
+            if (playerTaskHandler.isBlockTask(player)) {
+                playerTaskHandler.finishTask(player);
 
-                if (game.getPlayerTaskHandler().getPlayersTask().isEmpty()) {
+                if (playerTaskHandler.getPlayersTask().isEmpty()) {
                     startNewRound();
                     return;
                 }
@@ -47,12 +52,12 @@ public class GameTickTask extends BukkitRunnable {
     }
 
     private void startNewRound() {
-        if (!game.getPlayerTaskHandler().getPlayersTask().isEmpty()) {
-            if (game.getPlayerTaskHandler().getPlayersTask().size() == game.getPlayers().size()) {
+        if (!playerTaskHandler.getPlayersTask().isEmpty()) {
+            if (playerTaskHandler.getPlayersTask().size() == game.getPlayers().size()) {
                 game.sendMessage("&#FC5E5ENobody found his block, moving to the next round!");
                 game.playSound(Sound.ENTITY_VILLAGER_NO);
             } else
-                for (UUID playerUUID : game.getPlayerTaskHandler().getPlayersTask().keySet()) {
+                for (UUID playerUUID : playerTaskHandler.getPlayersTask().keySet()) {
                     Player player = game.getPlugin().getServer().getPlayer(playerUUID);
                     if (player == null) continue;
 
@@ -60,7 +65,7 @@ public class GameTickTask extends BukkitRunnable {
                 }
         }
 
-        game.getPlayerTaskHandler().giveTasks();
+        playerTaskHandler.giveTasks();
         game.setRound(game.getRound() + 1);
 
         timeLeftUntilRoundOver = (60 * 5);
