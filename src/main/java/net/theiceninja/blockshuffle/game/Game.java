@@ -76,7 +76,7 @@ public class Game {
         playSound(Sound.ENTITY_BLAZE_HURT);
 
         if (players.size() <= 1) {
-            Player winner = plugin.getServer().getPlayer(players.stream().toList().get(0));
+            Player winner = players.isEmpty() ? null : plugin.getServer().getPlayer(players.stream().toList().get(0));
             String winnerName = (winner == null ? "&#FF806Enot found" : winner.getName());
             String winMessage = "&#6EFF96" + winnerName + " &#FFD56Ewon the game!";
 
